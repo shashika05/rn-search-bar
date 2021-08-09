@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, FlatList } from "react-native";
 import tailwind from "tailwind-rn";
 
-const SearchPage = ({ searchData, arrayNew }) => {
+const SearchPage = ({ searchData }) => {
   return (
-    <View style={tailwind("justify-center items-center")}>
+    <View style={tailwind("justify-center")}>
       <FlatList
         data={searchData}
         renderItem={({ item }) => (
