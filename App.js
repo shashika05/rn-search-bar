@@ -25,6 +25,7 @@ export default function App() {
   // State for when clicked entry in Search data Flatlist
   const [dataName, setDataName] = useState("Data Page");
 
+  // Search event handling
   const searchItems = (text) => {
     const newData = dataArray.filter((item) => {
       const itemData = `${item.name.toUpperCase()}`;
@@ -34,6 +35,12 @@ export default function App() {
     setSearchData(newData);
     setSearchText(text);
   };
+
+  // Filter array by searched name
+  var resultArray = dataArray.filter((obj) => {
+    return obj.name == dataName;
+  });
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -50,7 +57,6 @@ export default function App() {
           children={() => (
             <SearchPage
               searchData={searchData.reverse()}
-              dataArray={dataArray}
               setDataName={setDataName}
             />
           )}
@@ -78,7 +84,7 @@ export default function App() {
         />
         <Stack.Screen
           name="DataPage"
-          children={() => <DataPage dataName={dataName} />}
+          children={() => <DataPage resultArray={resultArray[0]} />}
           options={{
             headerTitle: dataName,
           }}
