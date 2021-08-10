@@ -1,52 +1,32 @@
 import React, { useState } from "react";
-import { TextInput } from "react-native";
+import { Keyboard, TouchableOpacity } from "react-native";
+import tailwind from "tailwind-rn";
+import { AntDesign } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
 import Home from "./src/Home";
 import DataPage from "./src/DataPage";
-import SearchPage from "./src/SearchPage";
 
-import SearchButton from "./src/SearchButton";
-import SearchInput from "./src/SearchInput";
+// Search Components
+import SearchPage from "./src/Search/SearchPage";
+import SearchButton from "./src/Search/SearchButton";
+import SearchInput from "./src/Search/SearchInput";
+
+import dataArray from "./dataArray";
 
 const Stack = createStackNavigator();
 
-const arrayNew = [
-  { name: "Robert" },
-  { name: "Bryan" },
-  { name: "Vicente" },
-  { name: "Tristan" },
-  { name: "Marie" },
-  { name: "Onni" },
-  { name: "sophie" },
-  { name: "Brad" },
-  { name: "Samual" },
-  { name: "Omur" },
-  { name: "Ower" },
-  { name: "Awery" },
-  { name: "Ann" },
-  { name: "Jhone" },
-  { name: "z" },
-  { name: "bb" },
-  { name: "cc" },
-  { name: "d" },
-  { name: "e" },
-  { name: "f" },
-  { name: "g" },
-  { name: "h" },
-  { name: "i" },
-  { name: "j" },
-  { name: "k" },
-  { name: "l" },
-];
-
 export default function App() {
+  // Search Bar States
   const [searchText, setSearchText] = useState("");
   const [searchData, setSearchData] = useState([]);
 
+  // State for when clicked entry in Search data Flatlist
+  const [dataName, setDataName] = useState("Data Page");
+
   const searchItems = (text) => {
-    const newData = arrayNew.filter((item) => {
+    const newData = dataArray.filter((item) => {
       const itemData = `${item.name.toUpperCase()}`;
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
@@ -68,7 +48,11 @@ export default function App() {
         />
         <Stack.Screen
           children={() => (
-            <SearchPage searchData={searchData} arrayNew={arrayNew} />
+            <SearchPage
+              searchData={searchData.reverse()}
+              dataArray={dataArray}
+              setDataName={setDataName}
+            />
           )}
           name="SearchPage"
           options={{
@@ -80,9 +64,25 @@ export default function App() {
                 />
               );
             },
+            headerRight: () => {
+              return (
+                <TouchableOpacity
+                  style={tailwind("absolute right-8")}
+                  onPress={() => Keyboard.dismiss()}
+                >
+                  <AntDesign name="search1" size={24} color="black" />
+                </TouchableOpacity>
+              );
+            },
           }}
         />
-        <Stack.Screen component={DataPage} name="Data Page" />
+        <Stack.Screen
+          name="DataPage"
+          children={() => <DataPage dataName={dataName} />}
+          options={{
+            headerTitle: dataName,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
