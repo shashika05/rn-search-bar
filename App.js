@@ -13,6 +13,9 @@ import SearchPage from "./src/Search/SearchPage";
 import SearchButton from "./src/Search/SearchButton";
 import SearchInput from "./src/Search/SearchInput";
 
+// Back button
+import BackButton from "./src/BackButton";
+
 import dataArray from "./dataArray";
 
 const Stack = createStackNavigator();
@@ -73,12 +76,15 @@ export default function App() {
             headerRight: () => {
               return (
                 <TouchableOpacity
-                  style={tailwind("absolute right-8")}
+                  style={tailwind("absolute right-4")}
                   onPress={() => Keyboard.dismiss()}
                 >
                   <AntDesign name="search1" size={24} color="black" />
                 </TouchableOpacity>
               );
+            },
+            headerLeft: () => {
+              return <BackButton />;
             },
           }}
         />
