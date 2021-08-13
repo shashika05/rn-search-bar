@@ -93,6 +93,9 @@ export default function App() {
           children={() => <DataPage resultArray={resultArray[0]} />}
           options={{
             headerTitle: dataName,
+            headerLeft: () => {
+              return <BackButton />;
+            },
           }}
         />
       </Stack.Navigator>
