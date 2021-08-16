@@ -17,6 +17,7 @@ import SearchInput from "./src/Search/SearchInput";
 import BackButton from "./src/BackButton";
 
 import dataArray from "./dataArray";
+import recentSearch from "./recentSearch";
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,12 @@ export default function App() {
   // Search Bar States
   const [searchText, setSearchText] = useState("");
   const [searchData, setSearchData] = useState([]);
+
+  // Recent search's
+  const setRecentSearch = (name) => {
+    recentSearch.push(name);
+    console.log(recentSearch);
+  };
 
   // State for when clicked entry in Search data Flatlist
   const [dataName, setDataName] = useState("Data Page");
@@ -61,6 +68,10 @@ export default function App() {
             <SearchPage
               searchData={searchData.reverse()}
               setDataName={setDataName}
+              setSearchText={setSearchText}
+              setSearchData={setSearchData}
+              setRecentSearch={setRecentSearch}
+              recentSearch={recentSearch.reverse()}
             />
           )}
           name="SearchPage"

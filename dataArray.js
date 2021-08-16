@@ -25,7 +25,7 @@ export default dataArray = [
   { name: "Kathryn Waelchi", mail: "Kathryn_Waelchi@yahoo.com" },
   { name: "Mr. Johathan Pollich", mail: "Johathan51@gmail.com" },
   { name: "Maximillia Beer", mail: "Maximillia.Beer@gmail.com" },
-  // { name: "l", mail: "" },
+  { name: "Shashika Raveen", mail: "iamsrylk@gmail.com" },
   // { name: "l", mail: "" },
   // { name: "l", mail: "" },
 ];
