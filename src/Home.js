@@ -10,7 +10,7 @@ const Home = () => {
           "m-8 rounded-2xl border-b-4 border-r-2 border-l-2 border-gray-500 bg-gray-400 w-72 h-5/6 items-center justify-center"
         )}
       >
-        <Text>Search Test - App</Text>
+        <Text>Search Test - Home</Text>
       </View>
     </View>
   );

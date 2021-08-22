@@ -27,9 +27,15 @@ export default function App() {
   const [searchData, setSearchData] = useState([]);
 
   // Recent search's
+
+  const filteredArray = [];
+  const [isSearchedSomething, setIsSearchedSomething] = useState(false);
   const setRecentSearch = (name) => {
     recentSearch.push(name);
-    console.log(recentSearch);
+    recentSearch.forEach(function (value) {
+      if (filteredArray.indexOf(value) == -1) filteredArray.push(value);
+    });
+    console.log(filteredArray);
   };
 
   // State for when clicked entry in Search data Flatlist
@@ -71,7 +77,9 @@ export default function App() {
               setSearchText={setSearchText}
               setSearchData={setSearchData}
               setRecentSearch={setRecentSearch}
-              recentSearch={recentSearch.reverse()}
+              recentSearch={filteredArray.reverse()}
+              isSearchedSomething={isSearchedSomething}
+              setIsSearchedSomething={setIsSearchedSomething}
             />
           )}
           name="SearchPage"
