@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Keyboard,
   Image,
+  Alert,
 } from "react-native";
 import tailwind from "tailwind-rn";
 import { useNavigation } from "@react-navigation/native";
@@ -25,9 +26,6 @@ const SearchPage = ({
 }) => {
   const navigation = useNavigation();
 
-  console.log(isSearchedSomething);
-  console.log(recentSearch);
-
   const onFlatlistPress = (name) => {
     Keyboard.dismiss;
     setDataName(name);
@@ -40,9 +38,24 @@ const SearchPage = ({
   };
 
   const clearRecentSearches = () => {
-    setRecentSearchArray([]);
-    setFilteredArray([]);
-    setIsSearchedSomething(false);
+    Alert.alert(
+      "Clear Recent Searches",
+      "Do you want to clear recent searches?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            setRecentSearchArray([]);
+            setFilteredArray([]);
+            setIsSearchedSomething(false);
+          },
+        },
+      ]
+    );
   };
 
   return (

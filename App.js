@@ -16,9 +16,8 @@ import SearchInput from "./src/Search/SearchInput";
 // Back button
 import BackButton from "./src/BackButton";
 
+//Array of data
 import dataArray from "./dataArray";
-// import recentSearch from "./recentSearch";
-// import filteredArray from "./filteredArray";
 
 const Stack = createStackNavigator();
 
@@ -37,7 +36,6 @@ export default function App() {
       if (filteredArray.indexOf(value) == -1) filteredArray.push(value);
     });
     if (filteredArray.indexOf(name) == -1) filteredArray.push(name);
-    console.log(filteredArray.reverse());
   };
 
   // State for when clicked entry in Search data Flatlist
