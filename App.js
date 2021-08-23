@@ -17,7 +17,8 @@ import SearchInput from "./src/Search/SearchInput";
 import BackButton from "./src/BackButton";
 
 import dataArray from "./dataArray";
-import recentSearch from "./recentSearch";
+// import recentSearch from "./recentSearch";
+// import filteredArray from "./filteredArray";
 
 const Stack = createStackNavigator();
 
@@ -27,15 +28,16 @@ export default function App() {
   const [searchData, setSearchData] = useState([]);
 
   // Recent search's
-
-  const filteredArray = [];
+  const [recentSearch, setRecentSearchArray] = useState([]);
+  const [filteredArray, setFilteredArray] = useState([]);
   const [isSearchedSomething, setIsSearchedSomething] = useState(false);
   const setRecentSearch = (name) => {
     recentSearch.push(name);
     recentSearch.forEach(function (value) {
       if (filteredArray.indexOf(value) == -1) filteredArray.push(value);
     });
-    console.log(filteredArray);
+    if (filteredArray.indexOf(name) == -1) filteredArray.push(name);
+    console.log(filteredArray.reverse());
   };
 
   // State for when clicked entry in Search data Flatlist
@@ -48,6 +50,7 @@ export default function App() {
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
+    setIsSearchedSomething(false);
     setSearchData(newData);
     setSearchText(text);
   };
@@ -77,9 +80,11 @@ export default function App() {
               setSearchText={setSearchText}
               setSearchData={setSearchData}
               setRecentSearch={setRecentSearch}
-              recentSearch={filteredArray.reverse()}
+              recentSearch={filteredArray}
               isSearchedSomething={isSearchedSomething}
               setIsSearchedSomething={setIsSearchedSomething}
+              setFilteredArray={setFilteredArray}
+              setRecentSearchArray={setRecentSearchArray}
             />
           )}
           name="SearchPage"

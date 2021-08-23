@@ -4,7 +4,7 @@ import tailwind from "tailwind-rn";
 
 const styleDetector = [
   Platform.OS === "ios"
-    ? tailwind("absolute -top-4 -right-60")
+    ? tailwind("absolute -top-4 -right-56")
     : tailwind("absolute -top-4"),
 ];
 
